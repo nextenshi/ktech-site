@@ -80,7 +80,9 @@
     }
 
     .card img {
-      width: 100px;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
       margin-bottom: 15px;
     }
 
@@ -108,7 +110,10 @@
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="KTECH Logo">
+    <div style="display: flex; align-items: center;">
+      <img src="ck.png" alt="KTECH" style="height: 40px; margin-right: 10px;">
+      <span style="font-size: 20px; font-weight: bold;">KTECH</span>
+    </div>
     <nav>
       <a href="#">INICIO</a>
       <a href="#">PRODUTOS</a>
@@ -127,15 +132,15 @@
 
   <section class="cards">
     <div class="card">
-      <img src="pcgamer-icon.png" alt="PC Gamer">
+      <img src="gabinete.png" alt="PC Gamer">
       <h3>PCS GAMER</h3>
     </div>
     <div class="card">
-      <img src="notebook-icon.png" alt="Notebook">
+      <img src="notebook.png" alt="Notebook">
       <h3>NOTEBOOKS</h3>
     </div>
     <div class="card">
-      <img src="perifericos-icon.png" alt="Periféricos">
+      <img src="perifericos.png" alt="Periféricos">
       <h3>PERIFÉRICOS</h3>
     </div>
   </section>
