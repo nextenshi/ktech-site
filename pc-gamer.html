@@ -114,21 +114,96 @@
 
   <script>
     const produtosPcGamer = [
-      { nome: "Processador Eos 1825", descricao: "Processador potente para jogos", preco: 1019.82, img: "pc-gamer_imagens/processador.png" },
-      { nome: "Processador Reprehenderit 6874", descricao: "Desempenho extremo para games", preco: 2162.12, img: "pc-gamer_imagens/processador2.png" },
-      { nome: "Processador Aliquam 5515", descricao: "Ótima relação custo-benefício", preco: 1449.70, img: "pc-gamer_imagens/processador3.png" },
-      { nome: "Placa-mãe Facere 7815", descricao: "Compatível com CPUs modernas e overclocking", preco: 562.63, img: "pc-gamer_imagens/placamae1.png" },
-      { nome: "Placa-mãe Corporis 91", descricao: "Alta performance para gamers exigentes", preco: 3470.92, img: "pc-gamer_imagens/placamae2.png" },
-      { nome: "Placa-mãe Accusamus 3115", descricao: "Estabilidade e qualidade para seu setup", preco: 1348.59, img: "pc-gamer_imagens/placamae3.png" },
-      { nome: "Memória RAM Similique 5181", descricao: "Alta velocidade para FPS estável", preco: 1369.67, img: "pc-gamer_imagens/ram.png" },
-      { nome: "Fonte Porro 9442", descricao: "Energia segura e potente para setups gamer", preco: 425.40, img: "pc-gamer_imagens/fonte.png" },
-      { nome: "Placa de Vídeo Aliquam 8884", descricao: "Gráficos realistas para jogos imersivos", preco: 2293.03, img: "pc-gamer_imagens/placadevideo.png" },
-      { nome: "SSD Similique 5591", descricao: "Velocidade e armazenamento rápido", preco: 273.03, img: "pc-gamer_imagens/ssd.png" },
-      { nome: "Cooler Quasi 4584", descricao: "Mantém a temperatura ideal do PC", preco: 105.50, img: "pc-gamer_imagens/cooler.png" },
-      { nome: "Gabinete Id 920", descricao: "Gabinete moderno com iluminação RGB", preco: 582.23, img: "pc-gamer_imagens/gabinete.png" },
-      { nome: "Gabinete Soluta 3887", descricao: "Design elegante e espaço interno", preco: 696.49, img: "pc-gamer_imagens/gabinete2.png" },
-      { nome: "Gabinete Minus 7223", descricao: "Compacto e eficiente para setups pequenos", preco: 305.55, img: "pc-gamer_imagens/gabinete3.png" },
-      { nome: "Controlador RGB Eligendi 9670", descricao: "Personalize suas luzes com facilidade", preco: 114.97, img: "pc-gamer_imagens/controlador_rgb.png" }
+      {
+        nome: "Processador Eos 1825",
+        descricao: "Processador Eos 1825, 8 núcleos, 16 threads, frequência base 3.8 GHz, boost até 4.7 GHz, cache L3 32MB, socket AM4.",
+        preco: 1019.82,
+        img: "pc-gamer_imagens/processador.png"
+      },
+      {
+        nome: "Processador Reprehenderit 6874",
+        descricao: "Processador Reprehenderit 6874, 12 núcleos, 24 threads, frequência base 3.6 GHz, turbo até 5.2 GHz, cache L3 30MB, socket LGA 1700.",
+        preco: 2162.12,
+        img: "pc-gamer_imagens/processador2.png"
+      },
+      {
+        nome: "Processador Aliquam 5515",
+        descricao: "Processador Aliquam 5515, 6 núcleos, 12 threads, frequência base 3.4 GHz, boost até 4.5 GHz, cache L3 16MB, socket AM4.",
+        preco: 1449.70,
+        img: "pc-gamer_imagens/processador3.png"
+      },
+      {
+        nome: "Placa-mãe Facere 7815",
+        descricao: "Placa-mãe Facere 7815, chipset B550, suporte PCIe 4.0, memória DDR4 até 128GB, slots M.2 NVMe, Wi-Fi 6 integrado.",
+        preco: 562.63,
+        img: "pc-gamer_imagens/placamae1.png"
+      },
+      {
+        nome: "Placa-mãe Corporis 91",
+        descricao: "Placa-mãe Corporis 91, chipset Z690, suporte DDR5 até 128GB, PCIe 5.0, portas USB 3.2 Gen2x2, RGB personalizável.",
+        preco: 3470.92,
+        img: "pc-gamer_imagens/placamae2.png"
+      },
+      {
+        nome: "Placa-mãe Accusamus 3115",
+        descricao: "Placa-mãe Accusamus 3115, chipset B460, suporte DDR4, suporte a overclock básico, slots M.2 e SATA III.",
+        preco: 1348.59,
+        img: "pc-gamer_imagens/placamae3.png"
+      },
+      {
+        nome: "Memória RAM Similique 5181",
+        descricao: "Memória RAM Similique 5181, 16GB (2x8GB), DDR4 3200MHz, baixa latência CL16, perfil baixo, ideal para jogos e multitarefa.",
+        preco: 1369.67,
+        img: "pc-gamer_imagens/ram.png"
+      },
+      {
+        nome: "Fonte Porro 9442",
+        descricao: "Fonte Porro 9442, 650W, certificação 80 Plus Bronze, proteção contra surtos, eficiente e silenciosa.",
+        preco: 425.40,
+        img: "pc-gamer_imagens/fonte.png"
+      },
+      {
+        nome: "Placa de Vídeo Aliquam 8884",
+        descricao: "Placa de Vídeo Aliquam 8884, GPU com 8GB GDDR6, suporte Ray Tracing, HDMI 2.1, ideal para jogos em 1440p e 4K.",
+        preco: 2293.03,
+        img: "pc-gamer_imagens/placadevideo.png"
+      },
+      {
+        nome: "SSD Similique 5591",
+        descricao: "SSD Similique 5591, 1TB NVMe M.2, velocidades de leitura 3500MB/s, gravação 3000MB/s, tecnologia TRIM suportada.",
+        preco: 273.03,
+        img: "pc-gamer_imagens/ssd.png"
+      },
+      {
+        nome: "Cooler Quasi 4584",
+        descricao: "Cooler Quasi 4584, cooler para processador com 4 heatpipes, RGB, silencioso e eficiente para overclock.",
+        preco: 105.50,
+        img: "pc-gamer_imagens/cooler.png"
+      },
+      {
+        nome: "Gabinete Id 920",
+        descricao: "Gabinete Id 920, mid-tower com vidro temperado, iluminação RGB, suporte para até 3 fans e radiadores de até 280mm.",
+        preco: 582.23,
+        img: "pc-gamer_imagens/gabinete.png"
+      },
+      {
+        nome: "Gabinete Soluta 3887",
+        descricao: "Gabinete Soluta 3887, design moderno, espaço interno amplo, filtro anti-poeira removível e painel lateral em acrílico.",
+        preco: 696.49,
+        img: "pc-gamer_imagens/gabinete2.png"
+      },
+      {
+        nome: "Gabinete Minus 7223",
+        descricao: "Gabinete Minus 7223, compacto, ideal para setups pequenos, fácil instalação e ótimo fluxo de ar.",
+        preco: 305.55,
+        img: "pc-gamer_imagens/gabinete3.png"
+      },
+      {
+        nome: "Controlador RGB Eligendi 9670",
+        descricao: "Controlador RGB Eligendi 9670, controle de luzes LED com vários modos, compatível com software popular de iluminação.",
+        preco: 114.97,
+        img: "pc-gamer_imagens/controlador_rgb.png"
+      }
     ];
 
     const container = document.getElementById('pc-gamer-cards');
