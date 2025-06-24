@@ -14,7 +14,6 @@
       line-height: 1.6;
     }
 
-    /* Header fixo e responsivo */
     header {
       background-color: #111;
       display: flex;
@@ -44,7 +43,6 @@
       color: #8b00ff;
     }
 
-    /* Banner principal */
     .banner {
       background-color: #000;
       text-align: center;
@@ -56,8 +54,12 @@
 
     .banner img {
       max-width: 100%;
+      max-height: 300px; /* Limita altura para evitar imagem gigante */
       height: auto;
       border-radius: 12px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
     }
 
     .banner h1 {
@@ -75,7 +77,6 @@
       font-size: 1.1rem;
     }
 
-    /* Seção Hero */
     .hero {
       display: flex;
       align-items: center;
@@ -109,7 +110,6 @@
       border-radius: 12px;
     }
 
-    /* Cards de categorias */
     .cards {
       display: flex;
       justify-content: center;
@@ -153,7 +153,6 @@
       font-weight: 700;
     }
 
-    /* Responsividade */
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
@@ -201,7 +200,7 @@
   </header>
 
   <section class="banner" aria-label="Banner promocional">
-    <img src="inicio_imagens/pcgamer.png" alt="Banner com imagem de PC gamer RGB" />
+    <img src="inicio_imagens/promo.png" alt="Banner promocional" />
     <h1>Seu SONHO apenas na <span>KTECH</span></h1>
     <p>Gabinetes, placas, monitores, memórias... e muito mais!</p>
   </section>
