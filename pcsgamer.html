@@ -3,248 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PCs Gamer</title>
+  <title>KTECH - PCs Gamer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #121212;
-      color: #eee;
-    }
-    header {
-      background: #222;
-      padding: 15px 20px;
-      display: flex;
-      gap: 20px;
-    }
-    header button {
-      background: #444;
-      border: none;
-      padding: 10px 15px;
-      color: #eee;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    header button:hover, header button.active {
-      background: #08f;
-      color: white;
-    }
-    main {
-      padding: 20px;
-    }
-    .pc-card {
-      background: #1e1e1e;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      display: flex;
-      gap: 15px;
-      padding: 15px;
-      box-shadow: 0 0 10px #08f4;
-      align-items: center;
-    }
-    .pc-card img {
-      width: 180px;
-      height: 120px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #333;
-      flex-shrink: 0;
-    }
-    .pc-info {
-      flex-grow: 1;
-    }
-    .pc-info h3 {
-      margin: 0 0 8px 0;
-      font-size: 22px;
-      color: #08f;
-    }
-    .pc-info p {
-      margin: 0 0 10px 0;
-      white-space: pre-line;
-      line-height: 1.4;
-      font-size: 14px;
-      color: #ccc;
-    }
-    .pc-info .price {
-      font-weight: bold;
-      font-size: 18px;
-      color: #0f8;
-    }
-    /* Esconde as abas que não estão ativas */
-    section.tab-content {
-      display: none;
-    }
-    section.tab-content.active {
-      display: block;
+    /* MESMO CSS DO TEMA HARDWARE */
+    body { margin: 0; font-family: 'Inter', sans-serif; background-color: #0e0e0e; color: white; line-height: 1.6; }
+    header { background-color: #111; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid #007acc; }
+    header img { height: 40px; margin-right: 10px; }
+    header nav a { color: white; text-decoration: none; margin-left: 30px; font-weight: 600; transition: color 0.3s ease; }
+    header nav a:hover { color: #007acc; }
+    header nav a[aria-current="page"] { color: #007acc; text-decoration: underline; }
+    h1 { padding: 40px; font-weight: 700; font-size: 2.25rem; max-width: 1200px; margin: 0 auto; }
+    .cards { display: flex; flex-wrap: wrap; gap: 25px; padding: 0 40px 60px; justify-content: flex-start; max-width: 1200px; margin: 0 auto 60px; }
+    .card { background-color: #1b1b1b; border-radius: 15px; padding: 25px 20px; text-align: center; width: 250px; color: white; box-shadow: 0 0 15px rgba(0,122,204,0.5); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; }
+    .card:hover { transform: scale(1.07); box-shadow: 0 0 25px rgba(0,122,204,0.8); }
+    .card img { width: 140px; height: 140px; object-fit: contain; margin-bottom: 20px; border-radius: 10px; }
+    .card h3 { font-size: 22px; font-weight: 700; color: #00aaff; margin-bottom: 8px; }
+    .card p { font-size: 14px; color: #ccc; margin-bottom: 12px; flex-grow: 1; }
+    .card strong { font-size: 16px; color: #f0a500; margin-bottom: 15px; }
+    .btn-comprar { background-color: #007acc; border: none; border-radius: 8px; padding: 12px 20px; font-weight: 700; color: white; cursor: pointer; transition: background-color 0.3s ease; margin-top: auto; box-shadow: 0 0 8px #007acc; }
+    .btn-comprar:hover, .btn-comprar:focus { background-color: #005f99; outline: none; box-shadow: 0 0 12px #005f99; }
+    #carrinho { background: #1b1b1b; border-radius: 15px; padding: 25px 40px; max-width: 1200px; margin: 0 auto 60px; color: #eee; box-shadow: 0 0 20px rgba(0,122,204,0.6); }
+    #carrinho h2 { margin-top: 0; color: #007acc; font-weight: 700; font-size: 1.8rem; }
+    #carrinho ul { list-style: none; padding-left: 0; margin-bottom: 20px; }
+    #carrinho li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; font-weight: 600; }
+    #carrinho li button { background: #f04e4e; border: none; border-radius: 6px; color: white; cursor: pointer; padding: 5px 10px; font-size: 14px; transition: background-color 0.3s ease; }
+    #carrinho li button:hover { background: #b03a3a; }
+    #total { font-weight: 700; font-size: 1.4rem; text-align: right; color: #f0a500; }
+    @media (max-width: 768px) {
+      header { padding: 15px 20px; }
+      h1 { padding: 20px; font-size: 1.75rem; }
+      .cards { padding: 0 20px 40px; justify-content: center; }
+      .card { width: 90%; }
+      #carrinho { padding: 20px; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="inicio_imagens/ck.png" alt="Logo KTECH" />
+      <span style="font-size: 22px; font-weight: 700;">KTECH</span>
+    </div>
+    <nav>
+      <a href="index.html">INÍCIO</a>
+      <a href="pcsgamer.html" aria-current="page">PCS GAMER</a>
+      <a href="pcs-trabalho.html">PCS TRABALHO</a>
+      <a href="cadastro.html">CADASTRO</a>
+      <a href="sobre.html">SOBRE A EMPRESA</a>
+    </nav>
+  </header>
 
-<header>
-  <button data-tab="inicio" class="active">INÍCIO</button>
-  <button data-tab="pcs-gamer">PCS GAMER</button>
-  <button data-tab="pcs-trabalho">PCS TRABALHO</button>
-  <button data-tab="cadastro">CADASTRO</button>
-  <button data-tab="sobre">SOBRE A EMPRESA</button>
-</header>
-
-<main>
-  <section id="inicio" class="tab-content active">
-    <h1>Bem-vindo ao nosso site!</h1>
-    <p>Selecione uma aba para ver mais informações.</p>
-  </section>
-
-  <section id="pcs-gamer" class="tab-content">
+  <main>
     <h1>PCs Gamer</h1>
-    <div id="pcs-gamer-list"></div>
-  </section>
 
-  <section id="pcs-trabalho" class="tab-content">
-    <h1>PCs para Trabalho</h1>
-    <p>Em breve...</p>
-  </section>
+    <section class="cards" id="pc-gamer-cards" aria-label="Lista de PCs Gamer"></section>
 
-  <section id="cadastro" class="tab-content">
-    <h1>Cadastro</h1>
-    <p>Formulário de cadastro aqui...</p>
-  </section>
+    <section id="carrinho" aria-label="Carrinho de compras">
+      <h2>Carrinho</h2>
+      <ul id="lista-carrinho"></ul>
+      <div id="total">Total: R$ 0,00</div>
+    </section>
+  </main>
 
-  <section id="sobre" class="tab-content">
-    <h1>Sobre a Empresa</h1>
-    <p>Informações sobre a empresa...</p>
-  </section>
-</main>
-
-<script>
-  // Dados dos PCs Gamer, com nome, descrição, preço e imagem
-  const pcsGamer = [
-    {
-      nome: "Gamer Beast X1",
-      descricao: `Processador Eos 1825: 8 núcleos, 16 threads, frequência base 3.8 GHz, boost até 4.7 GHz, cache L3 32MB, socket AM4.
-Placa-mãe Corporis 91: chipset Z690, suporte DDR5 até 128GB, PCIe 5.0, portas USB 3.2 Gen2x2, RGB personalizável.
-Memória RAM Similique 5181: 16GB (2x8GB), DDR4 3200MHz, baixa latência CL16, perfil baixo, ideal para jogos e multitarefa.
-Placa de Vídeo Aliquam 8884: GPU com 8GB GDDR6, suporte Ray Tracing, HDMI 2.1, ideal para jogos em 1440p e 4K.
-SSD Similique 5591: 1TB NVMe M.2, velocidades de leitura 3500MB/s, gravação 3000MB/s, tecnologia TRIM suportada.
-Fonte Porro 9442: 650W, certificação 80 Plus Bronze, proteção contra surtos, eficiente e silenciosa.
-Gabinete Id 920: mid-tower com vidro temperado, iluminação RGB, suporte para até 3 fans e radiadores de até 280mm.`,
-      preco: 8999.99,
-      img: "pcs_imagens/gamer1.png"
-    },
-    {
-      nome: "Turbo Gamer V3",
-      descricao: `Processador Reprehenderit 6874: 12 núcleos, 24 threads, frequência base 3.6 GHz, turbo até 5.2 GHz, cache L3 30MB, socket LGA 1700.
-Placa-mãe Facere 7815: chipset B550, suporte PCIe 4.0, memória DDR4 até 128GB, slots M.2 NVMe, Wi-Fi 6 integrado.
-Memória RAM Similique 5181: 16GB (2x8GB), DDR4 3200MHz, baixa latência CL16, perfil baixo, ideal para jogos e multitarefa.
-Placa de Vídeo Aliquam 8884: GPU com 8GB GDDR6, suporte Ray Tracing, HDMI 2.1, ideal para jogos em 1440p e 4K.
-SSD Similique 5591: 512GB NVMe M.2.
-Fonte Porro 9442: 650W, certificação 80 Plus Bronze, proteção contra surtos, eficiente e silenciosa.
-Gabinete Soluta 3887: design moderno, espaço interno amplo, filtro anti-poeira removível e painel lateral em acrílico.`,
-      preco: 7499.90,
-      img: "pcs_imagens/gamer2.png"
-    },
-    {
-      nome: "UltraSpeed RX",
-      descricao: `Processador Reprehenderit 6874: 12 núcleos, 24 threads, frequência base 3.6 GHz, turbo até 5.2 GHz, cache L3 30MB, socket LGA 1700.
-Placa-mãe Corporis 91: chipset Z690, suporte DDR5 até 128GB, PCIe 5.0, portas USB 3.2 Gen2x2, RGB personalizável.
-Memória RAM Similique 5181: 32GB (2x16GB), DDR4 3200MHz, baixa latência CL16, perfil baixo, ideal para jogos e multitarefa.
-Placa de Vídeo Aliquam 8884: GPU com 8GB GDDR6, suporte Ray Tracing, HDMI 2.1, ideal para jogos em 1440p e 4K.
-SSD Similique 5591: 2TB NVMe M.2, velocidades de leitura 3500MB/s, gravação 3000MB/s, tecnologia TRIM suportada.
-Fonte Porro 9442: 650W, certificação 80 Plus Bronze, proteção contra surtos, eficiente e silenciosa.
-Gabinete Soluta 3887: design moderno, espaço interno amplo, filtro anti-poeira removível e painel lateral em acrílico.
-Cooler Quasi 4584: cooler para processador com 4 heatpipes, RGB, silencioso e eficiente para overclock.`,
-      preco: 12999.90,
-      img: "pcs_imagens/gamer3.png"
-    },
-    {
-      nome: "Entry Gamer Z",
-      descricao: `Processador Aliquam 5515: 6 núcleos, 12 threads, frequência base 3.4 GHz, boost até 4.5 GHz, cache L3 16MB, socket AM4.
-Placa-mãe Accusamus 3115: chipset B460, suporte DDR4, suporte a overclock básico, slots M.2 e SATA III.
-Memória RAM Similique 5181: 8GB (1x8GB), DDR4 3200MHz, baixa latência CL16, perfil baixo, ideal para jogos e multitarefa.
-Placa de Vídeo Aliquam 8884: GPU com 8GB GDDR6, suporte Ray Tracing, HDMI 2.1, ideal para jogos em 1440p e 4K.
-SSD Similique 5591: 256GB NVMe M.2, velocidades de leitura 3500MB/s, gravação 3000MB/s, tecnologia TRIM suportada.
-Fonte Porro 9442: 650W, certificação 80 Plus Bronze, proteção contra surtos, eficiente e silenciosa.
-Gabinete Minus 7223: compacto, ideal para setups pequenos, fácil instalação e ótimo fluxo de ar.`,
-      preco: 4999.00,
-      img: "pcs_imagens/gamer4.png"
-    }
-  ];
-
-  function formatPrice(price) {
-    return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  }
-
-  // Função que cria o HTML para cada PC
-  function criarCardPC(pc) {
-    const card = document.createElement('div');
-    card.className = 'pc-card';
-
-    const img = document.createElement('img');
-    img.src = pc.img;
-    img.alt = pc.nome;
-
-    const info = document.createElement('div');
-    info.className = 'pc-info';
-
-    const nome = document.createElement('h3');
-    nome.textContent = pc.nome;
-
-    const descricao = document.createElement('p');
-    descricao.textContent = pc.descricao;
-
-    const preco = document.createElement('div');
-    preco.className = 'price';
-    preco.textContent = formatPrice(pc.preco);
-
-    info.appendChild(nome);
-    info.appendChild(descricao);
-    info.appendChild(preco);
-
-    card.appendChild(img);
-    card.appendChild(info);
-
-    return card;
-  }
-
-  // Preenche a lista de PCs Gamer no HTML
-  function carregarPCsGamer() {
-    const container = document.getElementById('pcs-gamer-list');
-    container.innerHTML = '';
-    pcsGamer.forEach(pc => {
-      container.appendChild(criarCardPC(pc));
-    });
-  }
-
-  // Controle de abas do menu
-  const botoesMenu = document.querySelectorAll('header button');
-  const abas = document.querySelectorAll('section.tab-content');
-
-  botoesMenu.forEach(botao => {
-    botao.addEventListener('click', () => {
-      // Remove active dos botões e abas
-      botoesMenu.forEach(b => b.classList.remove('active'));
-      abas.forEach(ab => ab.classList.remove('active'));
-
-      // Ativa o botão clicado
-      botao.classList.add('active');
-      // Ativa a aba correspondente
-      const tabId = botao.getAttribute('data-tab');
-      document.getElementById(tabId).classList.add('active');
-
-      // Se for pcs-gamer, carrega os pcs
-      if(tabId === 'pcs-gamer') {
-        carregarPCsGamer();
+  <script>
+    const pcsGamer = [
+      {
+        nome: "Gamer Beast X1",
+        descricao: `Processador Eos 1825: 8 núcleos, 16 threads, frequência base 3.8 GHz, boost até 4.7 GHz.
+Placa-mãe Corporis 91: chipset Z690, suporte DDR5 até 128GB, PCIe 5.0, RGB.
+Memória RAM Similique 5181: 16GB DDR4 3200MHz.
+Placa de Vídeo Aliquam 8884: 8GB GDDR6, Ray Tracing.
+SSD Similique 5591: 1TB NVMe.
+Fonte Porro 9442: 650W, 80 Plus Bronze.
+Gabinete Id 920: mid-tower RGB.`,
+        preco: 8999.99,
+        img: "pcs_imagens/gamer1.png"
+      },
+      {
+        nome: "Turbo Gamer V3",
+        descricao: `Processador Reprehenderit 6874: 12 núcleos, 5.2 GHz turbo.
+Placa-mãe Facere 7815: B550, Wi‑Fi 6.
+RAM Similique 5181: 16GB.
+Aliquam 8884: 8GB GDDR6.
+SSD Similique 5591: 512GB.
+Fonte Porro 9442: 650W.
+Gabinete Soluta 3887: design moderno.`,
+        preco: 7499.90,
+        img: "pcs_imagens/gamer2.png"
+      },
+      {
+        nome: "UltraSpeed RX",
+        descricao: `CPU Reprehenderit 6874 + Placa‑mãe Corporis 91 (DDR5/PCIe 5.0).
+32GB RAM Similique 5181.
+GPU Aliquam 8884.
+SSD Similique 5591: 2TB.
+Fonte Porro 9442.
+Gabinete Soluta 3887.
+Cooler Quasi 4584: 4 heatpipes, RGB.`,
+        preco: 12999.90,
+        img: "pcs_imagens/gamer3.png"
+      },
+      {
+        nome: "Entry Gamer Z",
+        descricao: `CPU Aliquam 5515: 6 núcleos.
+Placa-mãe Accusamus 3115: B460.
+RAM Similique 5181: 8GB.
+GPU Aliquam 8884.
+SSD Similique 5591: 256GB.
+Fonte Porro 9442.
+Gabinete Minus 7223: compacto.`,
+        preco: 4999.00,
+        img: "pcs_imagens/gamer4.png"
       }
+    ];
+
+    const carrinho = [];
+    const container = document.getElementById('pc-gamer-cards');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalCarrinho = document.getElementById('total');
+
+    function formatBRL(v) {
+      return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function atualizarCarrinho() {
+      listaCarrinho.innerHTML = '';
+      let total = 0;
+      carrinho.forEach((item, i) => {
+        total += item.preco;
+        const li = document.createElement('li');
+        li.innerHTML = `<span style="color:#00aaff">${item.nome}</span> – ${formatBRL(item.preco)}
+          <button data-index="${i}" aria-label="Remover ${item.nome}">X</button>`;
+        listaCarrinho.appendChild(li);
+      });
+      totalCarrinho.textContent = `Total: ${formatBRL(total)}`;
+
+      listaCarrinho.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const idx = +e.target.dataset.index;
+          carrinho.splice(idx, 1);
+          atualizarCarrinho();
+        });
+      });
+    }
+
+    pcsGamer.forEach(pc => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${pc.img}" alt="${pc.nome}">
+        <h3>${pc.nome}</h3>
+        <p>${pc.descricao}</p>
+        <strong>${formatBRL(pc.preco)}</strong>
+        <button class="btn-comprar">Comprar</button>
+      `;
+      container.appendChild(card);
+
+      card.querySelector('.btn-comprar').addEventListener('click', () => {
+        carrinho.push(pc);
+        alert(`"${pc.nome}" adicionado ao carrinho!`);
+        atualizarCarrinho();
+      });
     });
-  });
-
-  // Opcional: carregar PCs Gamer se abrir direto na aba pcs-gamer
-  if(document.querySelector('section.tab-content.active').id === 'pcs-gamer') {
-    carregarPCsGamer();
-  }
-</script>
-
+  </script>
 </body>
 </html>
