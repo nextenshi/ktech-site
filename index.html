@@ -23,7 +23,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 2px solid #007acc; /* Azul */
+      border-bottom: 2px solid #007acc;
     }
 
     header img {
@@ -40,7 +40,7 @@
     }
 
     header nav a:hover {
-      color: #007acc; /* Azul */
+      color: #007acc;
     }
 
     .banner {
@@ -53,13 +53,12 @@
     }
 
     .banner img {
-      max-width: 100%;
-      height: auto;
+      width: 1000px;
+      height: 250px;
       border-radius: 12px;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
       margin: 0 auto;
-      /* Removi max-height para usar a imagem como quiser */
     }
 
     .banner h1 {
@@ -69,7 +68,7 @@
     }
 
     .banner h1 span {
-      color: #007acc; /* Azul */
+      color: #007acc;
     }
 
     .banner p {
@@ -128,7 +127,7 @@
       width: 250px;
       color: white;
       text-decoration: none;
-      box-shadow: 0 0 15px rgba(0, 122, 204, 0.5); /* Azul */
+      box-shadow: 0 0 15px rgba(0, 122, 204, 0.5);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
@@ -137,7 +136,7 @@
 
     .card:hover {
       transform: scale(1.07);
-      box-shadow: 0 0 25px rgba(0, 122, 204, 0.8); /* Azul */
+      box-shadow: 0 0 25px rgba(0, 122, 204, 0.8);
     }
 
     .card img {
@@ -151,6 +150,13 @@
     .card h3 {
       font-size: 22px;
       font-weight: 700;
+    }
+
+    @media (max-width: 1024px) {
+      .banner img {
+        width: 100%;
+        height: auto;
+      }
     }
 
     @media (max-width: 768px) {
@@ -200,7 +206,7 @@
   </header>
 
   <section class="banner" aria-label="Banner promocional">
-    <img src="inicio_imagens/promo.png" alt="Banner promocional" />
+    <img src="inicio_imagens/prom.png" alt="Banner promocional" />
   </section>
 
   <section class="hero" aria-label="Apresentação da Ktech">
