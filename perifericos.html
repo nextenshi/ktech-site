@@ -28,8 +28,14 @@
       margin-left: 30px;
       font-weight: 500;
     }
-    nav a:hover {
+    nav a:hover,
+    nav a:focus {
       text-decoration: underline;
+      outline: none;
+    }
+    nav a[aria-current="page"] {
+      text-decoration: underline;
+      color: #007acc;
     }
     h1 {
       padding: 40px 60px 20px 60px;
@@ -53,18 +59,24 @@
       flex-direction: column;
       align-items: center;
     }
-    .card:hover {
+    .card:hover,
+    .card:focus-within {
       transform: scale(1.03);
+      outline: none;
+      box-shadow: 0 0 15px #007acc;
     }
     .card img {
       width: 150px;
       height: 150px;
       object-fit: contain;
       margin-bottom: 15px;
+      border-radius: 6px;
     }
     .card h3 {
       font-size: 18px;
       margin-bottom: 8px;
+      font-weight: 700;
+      color: #00aaff;
     }
     .card p {
       font-size: 14px;
@@ -75,6 +87,23 @@
     .card strong {
       font-size: 16px;
       color: #f0a500;
+      margin-bottom: 10px;
+    }
+    .btn-comprar {
+      background-color: #00e1ff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-weight: 700;
+      color: black;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: auto;
+    }
+    .btn-comprar:hover,
+    .btn-comprar:focus {
+      background-color: #00c1dd;
+      outline: none;
     }
     @media (max-width: 768px) {
       header {
@@ -103,14 +132,14 @@
     <nav>
       <a href="index.html">INÍCIO</a>
       <a href="pc-gamer.html">PC GAMER</a>
-      <a href="perifericos.html" style="text-decoration: underline;">PERIFÉRICOS</a>
+      <a href="perifericos.html" aria-current="page">PERIFÉRICOS</a>
       <a href="cadastro.html">CADASTRO</a>
       <a href="sobre.html">SOBRE A EMPRESA</a>
     </nav>
   </header>
 
   <h1>Periféricos Gamer</h1>
-  <section class="cards" id="perifericos-cards"></section>
+  <section class="cards" id="perifericos-cards" aria-label="Lista de periféricos para gamers"></section>
 
   <script>
     const produtosPerifericos = [
@@ -123,15 +152,21 @@
     const container = document.getElementById('perifericos-cards');
 
     produtosPerifericos.forEach(produto => {
-      const card = document.createElement('div');
+      const card = document.createElement('article');
       card.className = 'card';
+      card.tabIndex = 0;
       card.innerHTML = `
         <img src="${produto.img}" alt="${produto.nome}">
         <h3>${produto.nome}</h3>
         <p>${produto.descricao}</p>
         <strong>R$ ${produto.preco.toFixed(2)}</strong>
+        <button class="btn-comprar" type="button">Comprar</button>
       `;
       container.appendChild(card);
+
+      card.querySelector('.btn-comprar').addEventListener('click', () => {
+        alert(\`Produto "${produto.nome}" adicionado ao carrinho!\`);
+      });
     });
   </script>
 </body>
