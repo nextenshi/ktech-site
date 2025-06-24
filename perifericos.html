@@ -75,6 +75,20 @@
     .card strong {
       font-size: 16px;
       color: #f0a500;
+      margin-bottom: 15px;
+    }
+    .card button {
+      background-color: #00e1ff;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .card button:hover {
+      background-color: #00c1dd;
     }
     @media (max-width: 768px) {
       header {
@@ -130,6 +144,7 @@
         <h3>${produto.nome}</h3>
         <p>${produto.descricao}</p>
         <strong>R$ ${produto.preco.toFixed(2)}</strong>
+        <button onclick="alert('Produto ${produto.nome} adicionado ao carrinho!')">Comprar</button>
       `;
       container.appendChild(card);
     });
