@@ -11,123 +11,156 @@
       font-family: 'Inter', sans-serif;
       background-color: #0e0e0e;
       color: white;
+      line-height: 1.6;
     }
     header {
       background-color: #111;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #007acc; /* Azul */
     }
     header img {
       height: 40px;
+      margin-right: 10px;
     }
-    nav a {
+    header nav a {
       color: white;
       text-decoration: none;
       margin-left: 30px;
-      font-weight: 500;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
-    nav a:hover {
+    header nav a:hover {
+      color: #007acc; /* Azul */
+    }
+    header nav a[aria-current="page"] {
+      color: #007acc;
       text-decoration: underline;
     }
     h1 {
-      padding: 40px 60px 20px 60px;
+      padding: 40px 40px 20px 40px;
       font-weight: 700;
+      font-size: 2.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .cards {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      padding: 0 60px 60px 60px;
+      gap: 25px;
+      padding: 0 40px 60px 40px;
       justify-content: flex-start;
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
     }
     .card {
       background-color: #1b1b1b;
-      border-radius: 10px;
-      padding: 20px;
-      width: 260px;
+      border-radius: 15px;
+      padding: 25px 20px;
       text-align: center;
-      transition: transform 0.3s;
+      width: 250px;
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 122, 204, 0.5); /* Azul */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .card:hover {
-      transform: scale(1.03);
+      transform: scale(1.07);
+      box-shadow: 0 0 25px rgba(0, 122, 204, 0.8); /* Azul */
     }
     .card img {
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       object-fit: contain;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
     }
     .card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
+      font-size: 22px;
+      font-weight: 700;
       color: #00aaff; /* Nome em azul */
+      margin-bottom: 8px;
     }
     .card p {
       font-size: 14px;
-      color: #aaa;
+      color: #ccc;
       margin-bottom: 12px;
       flex-grow: 1;
     }
     .card strong {
       font-size: 16px;
       color: #f0a500;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     .btn-comprar {
-      background-color: #00e1ff;
+      background-color: #007acc; /* Azul */
       border: none;
-      border-radius: 6px;
-      padding: 10px 20px;
+      border-radius: 8px;
+      padding: 12px 20px;
       font-weight: 700;
-      color: black;
+      color: white;
       cursor: pointer;
       transition: background-color 0.3s ease;
       margin-top: auto;
+      box-shadow: 0 0 8px #007acc;
     }
-    .btn-comprar:hover {
-      background-color: #00c1dd;
+    .btn-comprar:hover,
+    .btn-comprar:focus {
+      background-color: #005f99;
+      outline: none;
+      box-shadow: 0 0 12px #005f99;
     }
     #carrinho {
-      background: #222;
-      border-radius: 8px;
-      padding: 20px 40px;
-      max-width: 600px;
-      margin: 20px auto;
+      background: #1b1b1b;
+      border-radius: 15px;
+      padding: 25px 40px;
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
       color: #eee;
+      box-shadow: 0 0 20px rgba(0, 122, 204, 0.6);
     }
     #carrinho h2 {
       margin-top: 0;
-      color: #00e1ff;
+      color: #007acc;
+      font-weight: 700;
+      font-size: 1.8rem;
     }
     #carrinho ul {
       list-style: none;
       padding-left: 0;
+      margin-bottom: 20px;
     }
     #carrinho li {
       display: flex;
       justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #444;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+      font-weight: 600;
     }
     #carrinho li button {
       background: #f04e4e;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       color: white;
       cursor: pointer;
-      padding: 3px 8px;
-      font-size: 12px;
+      padding: 5px 10px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+    #carrinho li button:hover {
+      background: #b03a3a;
     }
     #total {
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       text-align: right;
-      margin-top: 10px;
       color: #f0a500;
     }
     @media (max-width: 768px) {
@@ -136,7 +169,7 @@
       }
       h1 {
         padding: 20px;
-        font-size: 24px;
+        font-size: 1.75rem;
       }
       .cards {
         padding: 0 20px 40px 20px;
@@ -146,8 +179,7 @@
         width: 90%;
       }
       #carrinho {
-        max-width: 90%;
-        padding: 15px 20px;
+        padding: 20px;
       }
     }
   </style>
@@ -155,13 +187,13 @@
 <body>
   <header>
     <div style="display: flex; align-items: center;">
-      <img src="inicio_imagens/ck.png" alt="KTECH" style="height: 40px; margin-right: 10px;">
-      <span style="font-size: 20px; font-weight: bold;">KTECH</span>
+      <img src="inicio_imagens/ck.png" alt="Logo KTECH" />
+      <span style="font-size: 22px; font-weight: 700;">KTECH</span>
     </div>
     <nav>
       <a href="index.html">INÍCIO</a>
       <a href="pc-gamer.html">PC GAMER</a>
-      <a href="perifericos.html" style="text-decoration: underline;">PERIFÉRICOS</a>
+      <a href="perifericos.html" aria-current="page">PERIFÉRICOS</a>
       <a href="cadastro.html">CADASTRO</a>
       <a href="sobre.html">SOBRE A EMPRESA</a>
     </nav>
@@ -169,6 +201,7 @@
 
   <main>
     <h1>Periféricos Gamer</h1>
+
     <section class="cards" id="perifericos-cards" aria-label="Lista de periféricos gamer"></section>
 
     <section id="carrinho" aria-label="Carrinho de compras">
@@ -200,7 +233,7 @@
         total += item.preco;
         const li = document.createElement('li');
         li.innerHTML = `
-          ${item.nome} - R$ ${item.preco.toFixed(2)}
+          <span style="color:#00aaff">${item.nome}</span> - R$ ${item.preco.toFixed(2)}
           <button aria-label="Remover ${item.nome}" data-index="${index}">X</button>
         `;
         listaCarrinho.appendChild(li);
@@ -208,7 +241,7 @@
 
       totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
 
-      // Adicionar evento para remover itens
+      // Remover itens
       listaCarrinho.querySelectorAll('button').forEach(botao => {
         botao.addEventListener('click', (e) => {
           const idx = e.target.getAttribute('data-index');
