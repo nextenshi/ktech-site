@@ -18,11 +18,6 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-    header:hover {
-      border-color: #007acc;
     }
     header img {
       height: 40px;
@@ -32,17 +27,9 @@
       text-decoration: none;
       margin-left: 30px;
       font-weight: 500;
-      transition: color 0.3s ease;
     }
-    nav a:hover,
-    nav a:focus {
-      color: #007acc;
-      outline: none;
-    }
-    nav a[aria-current="page"] {
+    nav a:hover {
       text-decoration: underline;
-      color: #007acc;
-      font-weight: 700;
     }
     h1 {
       padding: 40px 60px 20px 60px;
@@ -61,18 +48,13 @@
       padding: 20px;
       width: 260px;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      cursor: default;
     }
-    .card:hover,
-    .card:focus-within {
+    .card:hover {
       transform: scale(1.03);
-      box-shadow: 0 0 15px #007acc;
-      outline: none;
-      cursor: pointer;
     }
     .card img {
       width: 150px;
@@ -83,8 +65,7 @@
     .card h3 {
       font-size: 18px;
       margin-bottom: 8px;
-      color: #007acc; /* Nome em azul */
-      font-weight: 700;
+      color: #00aaff; /* Nome em azul */
     }
     .card p {
       font-size: 14px;
@@ -108,10 +89,46 @@
       transition: background-color 0.3s ease;
       margin-top: auto;
     }
-    .btn-comprar:hover,
-    .btn-comprar:focus {
+    .btn-comprar:hover {
       background-color: #00c1dd;
-      outline: none;
+    }
+    #carrinho {
+      background: #222;
+      border-radius: 8px;
+      padding: 20px 40px;
+      max-width: 600px;
+      margin: 20px auto;
+      color: #eee;
+    }
+    #carrinho h2 {
+      margin-top: 0;
+      color: #00e1ff;
+    }
+    #carrinho ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    #carrinho li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #444;
+    }
+    #carrinho li button {
+      background: #f04e4e;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+      padding: 3px 8px;
+      font-size: 12px;
+    }
+    #total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-align: right;
+      margin-top: 10px;
+      color: #f0a500;
     }
     @media (max-width: 768px) {
       header {
@@ -128,6 +145,10 @@
       .card {
         width: 90%;
       }
+      #carrinho {
+        max-width: 90%;
+        padding: 15px 20px;
+      }
     }
   </style>
 </head>
@@ -140,14 +161,22 @@
     <nav>
       <a href="index.html">INÍCIO</a>
       <a href="pc-gamer.html">PC GAMER</a>
-      <a href="perifericos.html" aria-current="page" style="text-decoration: underline;">PERIFÉRICOS</a>
+      <a href="perifericos.html" style="text-decoration: underline;">PERIFÉRICOS</a>
       <a href="cadastro.html">CADASTRO</a>
       <a href="sobre.html">SOBRE A EMPRESA</a>
     </nav>
   </header>
 
-  <h1>Periféricos Gamer</h1>
-  <section class="cards" id="perifericos-cards"></section>
+  <main>
+    <h1>Periféricos Gamer</h1>
+    <section class="cards" id="perifericos-cards" aria-label="Lista de periféricos gamer"></section>
+
+    <section id="carrinho" aria-label="Carrinho de compras">
+      <h2>Carrinho</h2>
+      <ul id="lista-carrinho"></ul>
+      <div id="total">Total: R$ 0,00</div>
+    </section>
+  </main>
 
   <script>
     const produtosPerifericos = [
@@ -157,11 +186,42 @@
       { nome: "Mousepad Vitae 9235", descricao: "Superfície ideal para precisão", preco: 69.59, img: "perifericos_imagens/mousepad.png" }
     ];
 
+    const carrinho = [];
+
     const container = document.getElementById('perifericos-cards');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalCarrinho = document.getElementById('total');
+
+    function atualizarCarrinho() {
+      listaCarrinho.innerHTML = '';
+      let total = 0;
+
+      carrinho.forEach((item, index) => {
+        total += item.preco;
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${item.nome} - R$ ${item.preco.toFixed(2)}
+          <button aria-label="Remover ${item.nome}" data-index="${index}">X</button>
+        `;
+        listaCarrinho.appendChild(li);
+      });
+
+      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+
+      // Adicionar evento para remover itens
+      listaCarrinho.querySelectorAll('button').forEach(botao => {
+        botao.addEventListener('click', (e) => {
+          const idx = e.target.getAttribute('data-index');
+          carrinho.splice(idx, 1);
+          atualizarCarrinho();
+        });
+      });
+    }
 
     produtosPerifericos.forEach(produto => {
-      const card = document.createElement('div');
+      const card = document.createElement('article');
       card.className = 'card';
+      card.tabIndex = 0;
       card.innerHTML = `
         <img src="${produto.img}" alt="${produto.nome}">
         <h3>${produto.nome}</h3>
@@ -172,7 +232,9 @@
       container.appendChild(card);
 
       card.querySelector('.btn-comprar').addEventListener('click', () => {
-        alert(\`Produto "${produto.nome}" adicionado ao carrinho!\`);
+        carrinho.push(produto);
+        alert(`Produto "${produto.nome}" adicionado ao carrinho!`);
+        atualizarCarrinho();
       });
     });
   </script>
