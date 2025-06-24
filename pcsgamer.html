@@ -2,275 +2,65 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KTECH - PCs Gamer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <title>PCS GAMER - KTECH</title>
   <style>
-    /* Copiar o mesmo CSS do seu site para manter padrão */
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0e0e0e;
-      color: white;
-      line-height: 1.6;
-    }
-    header {
-      background-color: #111;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 2px solid #007acc; /* Azul */
-    }
-    header img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    header nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 30px;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    header nav a:hover {
-      color: #007acc; /* Azul */
-    }
-    header nav a[aria-current="page"] {
-      color: #007acc;
-      text-decoration: underline;
-    }
-    h1 {
-      padding: 40px 40px 20px 40px;
-      font-weight: 700;
-      font-size: 2.25rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
-      padding: 0 40px 60px 40px;
-      justify-content: flex-start;
-      max-width: 1200px;
-      margin: 0 auto 60px auto;
-    }
-    .card {
-      background-color: #1b1b1b;
-      border-radius: 15px;
-      padding: 25px 20px;
-      text-align: center;
-      width: 250px;
-      color: white;
-      box-shadow: 0 0 15px rgba(0, 122, 204, 0.5); /* Azul */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .card:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 25px rgba(0, 122, 204, 0.8); /* Azul */
-    }
-    .card img {
-      width: 140px;
-      height: 140px;
-      object-fit: contain;
-      margin-bottom: 20px;
-      border-radius: 10px;
-    }
-    .card h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #00aaff; /* Nome em azul */
-      margin-bottom: 8px;
-    }
-    .card p {
-      font-size: 14px;
-      color: #ccc;
-      margin-bottom: 12px;
-      flex-grow: 1;
-    }
-    .card strong {
-      font-size: 16px;
-      color: #f0a500;
-      margin-bottom: 15px;
-    }
-    .btn-comprar {
-      background-color: #007acc; /* Azul */
-      border: none;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-weight: 700;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: auto;
-      box-shadow: 0 0 8px #007acc;
-    }
-    .btn-comprar:hover,
-    .btn-comprar:focus {
-      background-color: #005f99;
-      outline: none;
-      box-shadow: 0 0 12px #005f99;
-    }
-    #carrinho {
-      background: #1b1b1b;
-      border-radius: 15px;
-      padding: 25px 40px;
-      max-width: 1200px;
-      margin: 0 auto 60px auto;
-      color: #eee;
-      box-shadow: 0 0 20px rgba(0, 122, 204, 0.6);
-    }
-    #carrinho h2 {
-      margin-top: 0;
-      color: #007acc;
-      font-weight: 700;
-      font-size: 1.8rem;
-    }
-    #carrinho ul {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 20px;
-    }
-    #carrinho li {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #333;
-      font-weight: 600;
-    }
-    #carrinho li button {
-      background: #f04e4e;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-      padding: 5px 10px;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
-    }
-    #carrinho li button:hover {
-      background: #b03a3a;
-    }
-    #total {
-      font-weight: 700;
-      font-size: 1.4rem;
-      text-align: right;
-      color: #f0a500;
-    }
-    @media (max-width: 768px) {
-      header {
-        padding: 15px 20px;
-      }
-      h1 {
-        padding: 20px;
-        font-size: 1.75rem;
-      }
-      .cards {
-        padding: 0 20px 40px 20px;
-        justify-content: center;
-      }
-      .card {
-        width: 90%;
-      }
-      #carrinho {
-        padding: 20px;
-      }
-    }
+    body { background:#0e0e0e; color:white; font-family: 'Inter', sans-serif; max-width: 1200px; margin: auto; }
+    h1 { color:#00aaff; }
+    .pc-card { background:#1b1b1b; border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 15px #007acc; }
+    .pc-card h2 { color: #f0a500; }
+    .pecas-list { margin-left: 20px; }
+    .peca { margin-bottom: 8px; }
+    .preco { font-weight: 700; color:#00ffaa; }
   </style>
 </head>
 <body>
-  <header>
-    <div style="display: flex; align-items: center;">
-      <img src="inicio_imagens/ck.png" alt="Logo KTECH" />
-      <span style="font-size: 22px; font-weight: 700;">KTECH</span>
-    </div>
-    <nav>
-      <a href="index.html">INÍCIO</a>
-      <a href="pcsgamer.html" aria-current="page">PCS GAMER</a>
-      <a href="pcstrabalho.html">PCS TRABALHO</a>
-      <a href="cadastro.html">CADASTRO</a>
-      <a href="sobre.html">SOBRE A EMPRESA</a>
-    </nav>
-  </header>
 
-  <main>
-    <h1>PCs Gamer</h1>
+<h1>PCs Gamer</h1>
 
-    <section class="cards" id="pcs-cards" aria-label="Lista de PCs Gamer"></section>
+<div id="pcs-container"></div>
 
-    <section id="carrinho" aria-label="Carrinho de compras">
-      <h2>Carrinho</h2>
-      <ul id="lista-carrinho"></ul>
-      <div id="total">Total: R$ 0,00</div>
-    </section>
-  </main>
+<script>
+  const pecas = [
+    { nome: "Processador Eos 1825", descricao: "Processador Eos 1825, 8 núcleos, 16 threads, frequência base 3.8 GHz, boost até 4.7 GHz, cache L3 32MB, socket AM4.", preco: 1019.82 },
+    { nome: "Placa-mãe Facere 7815", descricao: "Placa-mãe Facere 7815, chipset B550, suporte PCIe 4.0, memória DDR4 até 128GB, slots M.2 NVMe, Wi-Fi 6 integrado.", preco: 562.63 },
+    { nome: "Memória RAM Similique 5181", descricao: "Memória RAM Similique 5181, 16GB (2x8GB), DDR4 3200MHz, baixa latência CL16, perfil baixo, ideal para jogos e multitarefa.", preco: 1369.67 },
+    { nome: "Placa de Vídeo Aliquam 8884", descricao: "Placa de Vídeo Aliquam 8884, GPU com 8GB GDDR6, suporte Ray Tracing, HDMI 2.1, ideal para jogos em 1440p e 4K.", preco: 2293.03 },
+    { nome: "SSD Similique 5591", descricao: "SSD Similique 5591, 1TB NVMe M.2, velocidades de leitura 3500MB/s, gravação 3000MB/s, tecnologia TRIM suportada.", preco: 273.03 },
+    { nome: "Fonte Porro 9442", descricao: "Fonte Porro 9442, 650W, certificação 80 Plus Bronze, proteção contra surtos, eficiente e silenciosa.", preco: 425.40 },
+    { nome: "Gabinete Id 920", descricao: "Gabinete Id 920, mid-tower com vidro temperado, iluminação RGB, suporte para até 3 fans e radiadores de até 280mm.", preco: 582.23 },
+  ];
 
-  <script>
-    const produtosPCsGamer = [
-      { nome: "Gamer Beast X1", descricao: "Intel i7, RTX 4070, 16GB RAM, SSD 1TB", preco: 8999.99, img: "pcs_imagens/gamer1.png" },
-      { nome: "Turbo Gamer V3", descricao: "AMD Ryzen 7, RTX 3060, 16GB RAM, SSD 512GB", preco: 7499.90, img: "pcs_imagens/gamer2.png" },
-      { nome: "UltraSpeed RX", descricao: "Intel i9, RTX 4080, 32GB RAM, SSD 2TB", preco: 12999.90, img: "pcs_imagens/gamer3.png" },
-      { nome: "Entry Gamer Z", descricao: "AMD Ryzen 5, GTX 1660, 8GB RAM, SSD 256GB", preco: 4999.00, img: "pcs_imagens/gamer4.png" }
-    ];
-
-    const carrinho = [];
-
-    const container = document.getElementById('pcs-cards');
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total');
-
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-
-      carrinho.forEach((item, index) => {
-        total += item.preco;
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <span style="color:#00aaff">${item.nome}</span> - R$ ${item.preco.toFixed(2)}
-          <button aria-label="Remover ${item.nome}" data-index="${index}">X</button>
-        `;
-        listaCarrinho.appendChild(li);
-      });
-
-      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
-
-      // Remover itens
-      listaCarrinho.querySelectorAll('button').forEach(botao => {
-        botao.addEventListener('click', (e) => {
-          const idx = e.target.getAttribute('data-index');
-          carrinho.splice(idx, 1);
-          atualizarCarrinho();
-        });
-      });
+  const pcsGamer = [
+    {
+      nome: "Gamer Beast X1",
+      pecas: [0,1,2,3,4,5,6],  // índices no array pecas
+    },
+    {
+      nome: "Turbo Gamer V3",
+      pecas: [0,1,2,3,4,5],  // exemplo só sem gabinete pra variar
     }
+  ];
 
-    produtosPCsGamer.forEach(produto => {
-      const card = document.createElement('article');
-      card.className = 'card';
-      card.tabIndex = 0;
-      card.innerHTML = `
-        <img src="${produto.img}" alt="${produto.nome}">
-        <h3>${produto.nome}</h3>
-        <p>${produto.descricao}</p>
-        <strong>R$ ${produto.preco.toFixed(2)}</strong>
-        <button class="btn-comprar" type="button">Comprar</button>
-      `;
-      container.appendChild(card);
+  const container = document.getElementById('pcs-container');
 
-      card.querySelector('.btn-comprar').addEventListener('click', () => {
-        carrinho.push(produto);
-        alert(`Produto "${produto.nome}" adicionado ao carrinho!`);
-        atualizarCarrinho();
-      });
+  pcsGamer.forEach(pc => {
+    let somaPreco = 0;
+    const div = document.createElement('div');
+    div.classList.add('pc-card');
+    let pecasHTML = '';
+    pc.pecas.forEach(idx => {
+      const peca = pecas[idx];
+      somaPreco += peca.preco;
+      pecasHTML += `<div class="peca"><strong>${peca.nome}</strong>: ${peca.descricao} <span class="preco">R$ ${peca.preco.toFixed(2)}</span></div>`;
     });
-  </script>
+    div.innerHTML = `
+      <h2>${pc.nome}</h2>
+      <div class="pecas-list">${pecasHTML}</div>
+      <p><strong>Preço total estimado: R$ ${somaPreco.toFixed(2)}</strong></p>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
 </body>
 </html>
