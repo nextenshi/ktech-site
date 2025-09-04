@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AuralScape Pro — Fone de Ouvido com Simulação Ambiental</title>
+  <meta name="description" content="Fone de ouvido futurista com simulação ambiental multisensorial, IA, recursos gamer e bem‑estar. Conheça o AuralScape Pro." />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #0f1621;
+      --panel-2: #121a26;
+      --text: #e6f0ff;
+      --muted: #a9b6c7;
+      --primary: #27b3ff;
+      --accent: #8ee4ff;
+      --ring: rgba(39,179,255,.55);
+      --ok: #36d399;
+      --warn: #ffd166;
+      --danger: #ff677d;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.4);
+    }
+    @media (prefers-color-scheme: light) {
+      :root{--bg:#f4f8ff;--panel:#ffffff;--panel-2:#f5f9ff;--text:#0b1020;--muted:#4f5b6a;--shadow:0 12px 30px rgba(0,20,60,.08)}
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(39,179,255,.15), transparent 50%),
+                  radial-gradient(1000px 700px at 10% 110%, rgba(142,228,255,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .container{max-width:1200px;margin-inline:auto;padding:32px}
+    .chip{display:inline-flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.12);padding:.45rem .75rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0));backdrop-filter: blur(6px)}
+    .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 6px rgba(39,179,255,.18)}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .panel{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-visual{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .ring{position:absolute;inset:auto; width:78%; aspect-ratio:1/1; border-radius:50%; border:2px solid var(--ring); filter: drop-shadow(0 0 18px var(--ring)); animation:pulse 4s ease-in-out infinite}
+    .ring.r2{width:64%; animation-delay:.6s; opacity:.7}
+    .ring.r3{width:48%; animation-delay:1.2s; opacity:.45}
+    @keyframes pulse{0%{transform:scale(0.98)}50%{transform:scale(1.02)}100%{transform:scale(0.98)}}
+    .headset{position:relative; z-index:2; filter: drop-shadow(0 30px 50px rgba(0,0,0,.5))}
+    .headband{height:18px;width:440px;background:#1b2431;border-radius:999px 999px 0 0;border:1px solid rgba(255,255,255,.06); border-bottom:none}
+    .cups{display:flex; gap:160px; margin-top:-8px}
+    .cup{width:190px;height:190px;border-radius:50%;background:#0e141d;border:1px solid rgba(255,255,255,.06);position:relative;display:grid;place-items:center}
+    .cup.white{background:#f6f8fc;color:#111;border-color:rgba(0,0,0,.08)}
+    .cup::before{content:""; position:absolute; inset:12px; border-radius:50%; border:2px solid var(--primary); box-shadow:0 0 0 8px rgba(39,179,255,.08), inset 0 0 30px rgba(39,179,255,.12)}
+    .glow{position:absolute; inset:auto; bottom:-16px; height:50px; width:75%; filter:blur(22px); background: radial-gradient(60% 80% at 50% 0%, rgba(39,179,255,.55), transparent 60%)}
+    h1{font-size:clamp(28px,5vw,54px);line-height:1.05;margin:6px 0 12px}
+    p.lead{font-size:clamp(16px,2.2vw,19px);color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{appearance:none;border:none;border-radius:12px;padding:.9rem 1.1rem;cursor:pointer;font-weight:700;letter-spacing:.2px}
+    .btn.primary{background:linear-gradient(180deg,var(--primary),#1386c7); color:#00131f; box-shadow:0 8px 18px rgba(39,179,255,.28)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
+
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.cups{gap:64px}.grid.cols-3{grid-template-columns:1fr}}
+
+    .card{padding:22px}
+    .card h3{margin:0 0 8px;font-size:20px}
+    .meta{color:var(--muted);font-size:14px}
+
+    .specs{padding:26px}
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}
+    th,td{padding:12px 14px;text-align:left}
+    thead th{background:rgba(255,255,255,.06);font-size:14px;color:var(--muted)}
+    tbody tr:nth-child(odd){background:rgba(255,255,255,.04)}
+
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:.4rem .6rem;border-radius:999px;border:1px dashed rgba(255,255,255,.18);font-size:12px;color:var(--muted)}
+    .badge i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 5px rgba(54,211,153,.2)}
+
+    .faq details{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px}
+    .faq summary{cursor:pointer;font-weight:600}
+    .faq details + details{margin-top:10px}
+
+    footer{opacity:.8;font-size:13px;padding:30px 0}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="chip"><span class="dot"></span> AuralScape Pro — Simulação Ambiental Multissensorial</div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>O fone que transforma o mundo ao seu redor.</h1>
+        <p class="lead">O <strong>AuralScape Pro</strong> é um fone de ouvido de próxima geração com <em>simulação ambiental</em>: áudio 3D hiper‑realista, vibrações táteis, micro‑aromas sincronizados e microclima local. Perfeito para foco, relaxamento e <strong>jogos online/offline</strong> com vantagem competitiva.</p>
+        <div class="cta">
+          <button class="btn primary" onclick="document.getElementById('specs').scrollIntoView({behavior:'smooth'})">Ver especificações</button>
+          <button class="btn ghost" onclick="document.getElementById('gaming').scrollIntoView({behavior:'smooth'})">Recursos para games</button>
+        </div>
+        <p class="meta" style="margin-top:10px">Compatível com PC, Console, Mobile e VR • Assistente de voz integrado estilo Alexa • IA de personalização</p>
+      </div>
+      <div class="panel hero-visual" aria-hidden="true">
+        <!-- Visual 100% em CSS/SVG (sem imagens externas) para prévia do produto: dois fones preto e branco com aro azul -->
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="headset">
+          <div class="headband"></div>
+          <div class="cups">
+            <div class="cup" title="Modelo Preto com detalhes azuis">
+              <div class="glow"></div>
+            </div>
+            <div class="cup white" title="Modelo Branco com detalhes azuis">
+              <div class="glow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid cols-3" style="margin-top:28px">
+      <article class="panel card">
+        <h3>Experiência Multissensorial</h3>
+        <p>Áudio espacial 3D + <strong>vibrações hápticas</strong> sincronizadas, <strong>micro‑aromas</strong> contextuais (floresta, maresia, café) e <strong>microclima</strong> suave (brisa/temperatura) para imersão completa.</p>
+        <span class="badge"><i></i>Ajuste automático por IA</span>
+      </article>
+      <article class="panel card">
+        <h3>Personalização por IA</h3>
+        <p>Crie ambientes apenas descrevendo: “pôr do sol no Japão”. O fone gera som 3D, aromas e sensações. <strong>Biblioteca social</strong> para compartilhar cenários.</p>
+        <span class="badge"><i></i>Perfis por humor e atividade</span>
+      </article>
+      <article class="panel card">
+        <h3>Bem‑estar & Sono</h3>
+        <p><strong>Biofeedback</strong> com sensores de batimentos, respiração e estresse. Terapia do sono com amanhecer sonoro, respiração guiada e despertar gradual.</p>
+        <span class="badge"><i></i>Proteção auditiva dinâmica</span>
+      </article>
+    </section>
+
+    <section id="gaming" style="margin-top:20px">
+      <div class="panel card">
+        <h2 style="margin:0 0 8px">Feito para Games</h2>
+        <p class="meta">Imersão cinematográfica e vantagem competitiva em jogos online e offline.</p>
+        <div class="grid cols-3" style="margin-top:10px">
+          <div class="card" style="background:transparent">
+            <h3>Som 4D Dinâmico</h3>
+            <p>Impactos, explosões e passos <strong>sentidos</strong> com vibração tátil de baixa latência. HUD sonoro para alertas discretos (vida, munição, inimigos).</p>
+          </div>
+          <div class="card" style="background:transparent">
+            <h3>Detecção Direcional+</h3>
+            <p>Algoritmos que ampliam pistas espaciais para <strong>FPS</strong> e jogos competitivos. Modo eSports com latência ultrabaixa.</p>
+          </div>
+          <div class="card" style="background:transparent">
+            <h3>Conectividade Multiplayer</h3>
+            <p>Chat com <strong>áudio espacial</strong>, tradução em tempo real e <em>ambientes compartilhados</em> para todo o squad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:20px">
+      <div class="panel specs" id="specs">
+        <h2 style="margin:0 0 8px">Especificações Técnicas</h2>
+        <p class="meta">Dados conceituais deste protótipo futurista.</p>
+        <table aria-label="Tabela de especificações do AuralScape Pro">
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th>Detalhes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Áudio</td>
+              <td>Drivers híbridos 50mm + micro‑transdutores hápticos; banda 10Hz–40kHz; áudio espacial 3D com head‑tracking.</td>
+            </tr>
+            <tr>
+              <td>IA & Personalização</td>
+              <td>Geração de ambientes por voz/texto; perfis por humor; biblioteca social; ajuste automático de EQ e ANC.</td>
+            </tr>
+            <tr>
+              <td>Multissensorial</td>
+              <td>Difusores de micro‑aromas recarregáveis; microclima (brisa/temperatura leve); iluminação de aro azul responsiva.</td>
+            </tr>
+            <tr>
+              <td>Conectividade</td>
+              <td>BT 5.x + modo dongle 2.4GHz de baixa latência; USB‑C; multiponto; assistente de voz estilo Alexa embutido.</td>
+            </tr>
+            <tr>
+              <td>Jogatina</td>
+              <td>Modo eSports (&lt;20 ms); filtro tático de ruído; HUD sonoro; chat espacial; tradução simultânea.</td>
+            </tr>
+            <tr>
+              <td>Saúde</td>
+              <td>Biofeedback (FC, respiração, variabilidade); proteção auditiva dinâmica; modo maratona anti‑fadiga.</td>
+            </tr>
+            <tr>
+              <td>Energia</td>
+              <td>Bateria 1200 mAh; recarga rápida; apoio solar/cinética; 70 h de uso padrão (estimado conceitual).</td>
+            </tr>
+            <tr>
+              <td>Materiais</td>
+              <td>Arco em compósito flexível; earpads de espuma de memória sustentável; acabamento preto e branco com detalhes azuis.</td>
+            </tr>
+            <tr>
+              <td>Compatibilidade</td>
+              <td>PC, PlayStation, Xbox (via cabo/dongle), Nintendo Switch, Mobile (Android/iOS) e VR.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section style="margin-top:20px">
+      <div class="grid cols-2">
+        <div class="panel card">
+          <h3>Casa Inteligente</h3>
+          <p>Sincronização com iluminação ambiente, automações e telas para transformar o cômodo no cenário escolhido.</p>
+          <span class="badge"><i></i>APIs para Home Assistant / Matter</span>
+        </div>
+        <div class="panel card">
+          <h3>Design & Sustentabilidade</h3>
+          <p>Earcups com <strong>anéis luminosos</strong> azuis, projeções sutis e peças modulares para manutenção simples.</p>
+          <span class="badge"><i></i>Materiais recicláveis</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" style="margin-top:20px">
+      <div class="panel card">
+        <h2 style="margin:0 0 12px">Perguntas Frequentes</h2>
+        <details>
+          <summary>O AuralScape Pro é um produto real?</summary>
+          <p>Este é um projeto conceitual/futurista. As descrições ilustram como um produto assim poderia funcionar.</p>
+        </details>
+        <details>
+          <summary>É possível usar só o modo áudio, sem aromas e microclima?</summary>
+          <p>Sim. Tudo é modular: você ativa apenas o que quiser (áudio 3D, háptico, aromas, luzes, etc.).</p>
+        </details>
+        <details>
+          <summary>Funciona para trabalho/estudos?</summary>
+          <p>Há modos de foco com ruído adaptativo, trilhas para concentração e ambientes calmos com respiração guiada.</p>
+        </details>
+      </div>
+    </section>
+
+    <section style="margin-top:26px">
+      <div class="panel card" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center">
+        <div>
+          <h2 style="margin:0">Pronto para experimentar o futuro do som?</h2>
+          <p class="meta" style="margin:6px 0 0">Cadastre seu interesse e receba novidades sobre o protótipo.</p>
+        </div>
+        <form class="chip" onsubmit="event.preventDefault(); this.outerHTML='<span class=\'badge\'><i></i> Recebemos seu interesse! Obrigado.</span>'">
+          <input aria-label="Seu e-mail" required type="email" placeholder="Seu e‑mail" style="all:unset;padding:.5rem .6rem;min-width:220px" />
+          <button class="btn primary" type="submit">Quero saber mais</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="meta">© 2025 AuralScape (conceito). Este site descreve um projeto fictício criado para demonstração.</div>
+  </footer>
+</body>
+</html>
